@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import css from "components/Modal/Modal.module.css";
 import PropTypes from "prop-types";
 
-export default function Modal(url, alt, onClose) {
+export default function Modal({ src, onClose }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
@@ -25,7 +25,7 @@ export default function Modal(url, alt, onClose) {
   return (
     <div className={css.overlay} onClick={handleBackdropClick}>
       <div className={css.modal}>
-        <img src={url} alt={alt} />
+        <img src={src.url} alt={src.tags} />
       </div>
     </div>
   );
@@ -33,6 +33,8 @@ export default function Modal(url, alt, onClose) {
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  url: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  src: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+  }),
 };

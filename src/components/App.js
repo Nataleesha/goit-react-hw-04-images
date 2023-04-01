@@ -79,7 +79,7 @@ export default function App() {
         <ImageGallery gallery={results} onClick={openModal} />
       )}
       {status === "pending" && <Loader />}
-      {results.length > 0 && <Button onLoadMore={onLoadMoreHandle} />}
+      {(results.length > 0) && (results.length%12 === 0) && <Button onLoadMore={onLoadMoreHandle} />}
       {url && <Modal src={{ url, tags }} onClose={closeModal} />}
     </div>
   );
